@@ -1,0 +1,81 @@
+﻿<Window x:Class="Tcc_Defects_Tracker.Views.ConnectGDBView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="500"
+             Height="200" 
+             Width="500"
+             Title="Connect GDB..">
+    
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontFamily" Value="Tahoma"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="Margin" Value="5 0 0 0"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="FontFamily" Value="Tahoma"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
+        
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="25"></Setter>
+        </Style>
+        
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="25"></Setter>
+        </Style>
+
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="144*" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="182*" />
+            <ColumnDefinition Width="92*" />
+            <ColumnDefinition Width="109*" />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="5" Text="Connect GDB" HorizontalAlignment="Center"></TextBlock>
+        
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Select GDB" ></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Choose Dataset"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Choose Featureset"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="3" Text=" New Featureset"></TextBlock>
+
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding GDBConnect.GDBPath, Mode=TwoWay}"></TextBox>
+
+        <ComboBox Grid.Row="2" Grid.Column="2" 
+                  ItemsSource="{Binding GDBConnect.DatasetNameList}" 
+                  SelectedItem="{Binding SelectedDatasetName,Mode=TwoWay}">
+        </ComboBox>
+        
+        <ComboBox Grid.Row="3" Grid.Column="2" 
+                  ItemsSource="{Binding GDBConnect.FeaturesetNameList, Mode=TwoWay}" 
+                  SelectedItem="{Binding SelectedFeaturesetName,Mode=TwoWay}">
+        </ComboBox>
+
+        <TextBox Grid.Row="3" Grid.Column="4" Text="{Binding GDBConnect.NewFeaturesetName}" Margin="5,9,4,9" Height="25"></TextBox>
+
+        <Button Grid.Row="1" Grid.Column="3" Content="Select" Command="{Binding SelectGDBPathCommand}" Width="75" ></Button>
+        <Button Grid.Row="4" Grid.ColumnSpan="5" Content="Add" Command="{Binding AddFeaturesetCommand}" Width="100" ></Button>
+        <Button Grid.Row="4" Grid.Column="7" Content="Close" Command="{Binding CloseWindowCommand}" Width="100" ></Button>
+
+    </Grid>
+</Window>
